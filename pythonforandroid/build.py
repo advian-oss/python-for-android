@@ -17,7 +17,7 @@ from pythonforandroid.util import (
     current_directory, ensure_dir,
     BuildInterruptingException,
 )
-from pythonforandroid.logger import (info, warning, info_notify, info_main, shprint)
+from pythonforandroid.logger import (info, warning, info_notify, info_main, shprint, debug)
 from pythonforandroid.archs import ArchARM, ArchARMv7_a, ArchAarch_64, Archx86, Archx86_64
 from pythonforandroid.pythonpackage import get_package_name
 from pythonforandroid.recipe import CythonRecipe, Recipe
@@ -818,6 +818,8 @@ def run_pymodules_install(ctx, modules, project_dir=None,
                  'native code that is unaware of Android cross-compilation '
                  'and does not work without additional '
                  'changes / workarounds.')
+            with open('requirements.txt', 'rt') as fileh:
+                debug('requirements.txt contents: \n=======\n' + fileh.read() + "\n=======\n")
 
             shprint(sh.bash, '-c', (
                 "venv/bin/pip " +
