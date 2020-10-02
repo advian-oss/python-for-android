@@ -842,6 +842,9 @@ tools directory of the Android SDK.
     if args.features and isinstance(args.features[0], list):
         args.features = [f for feat in args.features for f in feat]
 
+    if args.res_xmls and isinstance(args.res_xmls[0], list):
+        args.res_xmls = [x for res in args.res_xmls for x in res]
+
     if args.try_system_python_compile:
         # Hardcoding python2.7 is okay for now, as python3 skips the
         # compilation anyway
